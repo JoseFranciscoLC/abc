@@ -1,11 +1,11 @@
 <?php
     class Conexion
 	{
-		public $servidor = "10.27.113.159";
+		public $servidor = "localhost";
 		public $puerto = "5432";
-		public $usuario = "sysexhibicion";
-		public $password = "979fe4c465b2ed68f700ec7079cb120c";
-		public $baseDatos = "pruebas";
+		public $usuario = "postgres";
+		public $password = "123";
+		public $baseDatos = "postgres";
 		
 		function conectar(){
 			return pg_connect("host = $this->servidor  port = $this->puerto dbname = $this->baseDatos 

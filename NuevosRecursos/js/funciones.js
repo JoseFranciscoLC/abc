@@ -36,107 +36,92 @@ $(".soloLetras").on('keypress', function(e) {
     }
 });	
 
-$("#numeroEmpleado").blur(function(){
-	// console.log("Valor de input " + validarInputs());
-	if(validarInputs()){
-		$("#btnGuardar").removeAttr("disabled");	
-        $("#btnAceptarModalActualizar").removeAttr("disabled");		
-		console.log("Entro en if numero Empelado");
-	}else{
-		$("#btnGuardar").attr("disabled", "true");
-		$("#btnAceptarModalActualizar").attr("disabled", "true");
-		console.log("entro en else numero Empleado");
-	}
+// $("#numeroEmpleado").blur(function(){
+// 	// console.log("Valor de input " + validarInputs());
+// 	if(validarInputs()){
+// 		$("#btnGuardar").removeAttr("disabled");	
+//         $("#btnAceptarModalActualizar").removeAttr("disabled");		
+// 		console.log("Entro en if numero Empelado");
+// 	}else{
+// 		$("#btnGuardar").attr("disabled", "true");
+// 		$("#btnAceptarModalActualizar").attr("disabled", "true");
+// 		console.log("entro en else numero Empleado");
+// 	}
 	
-});
+// });
 
-$("#nombre").blur(function(){
-	if(validarInputs()){
-		$("#btnGuardar").removeAttr("disabled");	
-        $("#btnAceptarModalActualizar").removeAttr("disabled");			
-		console.log("Entro en if nombre");
-	}else{
-		$("#btnGuardar").attr("disabled", "true");
-		$("#btnAceptarModalActualizar").attr("disabled", "true");
-		console.log("entro en else nombre");
-	}
+// $("#nombre").blur(function(){
+// 	if(validarInputs()){
+// 		$("#btnGuardar").removeAttr("disabled");	
+//         $("#btnAceptarModalActualizar").removeAttr("disabled");			
+// 		console.log("Entro en if nombre");
+// 	}else{
+// 		$("#btnGuardar").attr("disabled", "true");
+// 		$("#btnAceptarModalActualizar").attr("disabled", "true");
+// 		console.log("entro en else nombre");
+// 	}
 	
-});
-$("#apellidoPaterno").blur(function(){
-	if(validarInputs()){
-		$("#btnGuardar").removeAttr("disabled");		
-		$("#btnAceptarModalActualizar").removeAttr("disabled");	
-		console.log("Entro en if apellidoPaterno");
-	}else{
-		$("#btnGuardar").attr("disabled", "true");
-		$("#btnAceptarModalActualizar").attr("disabled", "true");
-		console.log("entro en else apellidoPaterno");
-	}
+// });
+// $("#apellidoPaterno").blur(function(){
+// 	if(validarInputs()){
+// 		$("#btnGuardar").removeAttr("disabled");		
+// 		$("#btnAceptarModalActualizar").removeAttr("disabled");	
+// 		console.log("Entro en if apellidoPaterno");
+// 	}else{
+// 		$("#btnGuardar").attr("disabled", "true");
+// 		$("#btnAceptarModalActualizar").attr("disabled", "true");
+// 		console.log("entro en else apellidoPaterno");
+// 	}
 	
-});
-$("#apellidoMaterno").blur(function(){
-	if(validarInputs()){
-		$("#btnGuardar").removeAttr("disabled");	
-        $("#btnAceptarModalActualizar").removeAttr("disabled");			
-		console.log("Entro en if apellidoMaterno");
-	}else{
-		$("#btnGuardar").attr("disabled", "true");
-		$("#btnAceptarModalActualizar").attr("disabled", "true");
-		console.log("entro en else apellidoMaterno");
+// });
+// $("#apellidoMaterno").blur(function(){
+// 	if(validarInputs()){
+// 		$("#btnGuardar").removeAttr("disabled");	
+//         $("#btnAceptarModalActualizar").removeAttr("disabled");			
+// 		console.log("Entro en if apellidoMaterno");
+// 	}else{
+// 		$("#btnGuardar").attr("disabled", "true");
+// 		$("#btnAceptarModalActualizar").attr("disabled", "true");
+// 		console.log("entro en else apellidoMaterno");
 		
-	}
+// 	}
 	
-});
-$("#edad").blur(function(){
-	if(validarInputs()){
-		$("#btnGuardar").removeAttr("disabled");	
-        $("#btnAceptarModalActualizar").removeAttr("disabled");			
-		console.log("Entro en if edad");
-	}else{
-		$("#btnGuardar").attr("disabled", "true");
-		$("#btnAceptarModalActualizar").attr("disabled", "true");
-		console.log("entro en else edad");
-	}
+// });
+// $("#edad").blur(function(){
+// 	if(validarInputs()){
+// 		$("#btnGuardar").removeAttr("disabled");	
+//         $("#btnAceptarModalActualizar").removeAttr("disabled");			
+// 		console.log("Entro en if edad");
+// 	}else{
+// 		$("#btnGuardar").attr("disabled", "true");
+// 		$("#btnAceptarModalActualizar").attr("disabled", "true");
+// 		console.log("entro en else edad");
+// 	}
 	
-});
-$("#direccion").blur(function(){
-	console.log("Valor de input " + validarInputs());
-	if(validarInputs()){
-		$("#btnGuardar").removeAttr("disabled");
-		$("#btnAceptarModalActualizar").removeAttr("disabled");	
-		// console.log(validarInputs());		
-		console.log("Entro en if direccion");
-	}else{
-		// console.log(validarInputs());
-		$("#btnGuardar").attr("disabled", "true");
-		$("#btnAceptarModalActualizar").attr("disabled", "true");
-		console.log("entro en else direccion");
-	}
+// });
+// $("#direccion").blur(function(){
+// 	console.log("Valor de input " + validarInputs());
+// 	if(validarInputs()){
+// 		$("#btnGuardar").removeAttr("disabled");
+// 		$("#btnAceptarModalActualizar").removeAttr("disabled");	
+// 		// console.log(validarInputs());		
+// 		console.log("Entro en if direccion");
+// 	}else{
+// 		// console.log(validarInputs());
+// 		$("#btnGuardar").attr("disabled", "true");
+// 		$("#btnAceptarModalActualizar").attr("disabled", "true");
+// 		console.log("entro en else direccion");
+// 	}
 	
-});
+// });
 
 
-function validarInputs(){
-	let validacion = false;
-	if($("#numeroEmpleado").val()!="" && $("#nombre").val()!="" && 
-	   $("#apellidoPaterno").val()!="" && $("#apellidoMaterno").val()!=""&& 
-	   $("#edad").val()!="" && $("#direccion").val()!=""){
-		   validacion = true;
-	   }
-	   return validacion;
-	// if( !$("#numeroEmpleado").val()){
-		
-	// } else if(!$("#nombre").val()){
-	 
-	// } else if(!$("#apellidoPaterno").val()){
-		
-	// } else if(!$("#apellidoMaterno").val()){
-		
-	// } else if(!$("#edad").val()){
-		
-	// } else if(!$("#direccion").val()){
-		
-	// } 
-	
-	
-}
+// function validarInputs(){
+// 	let validacion = false;
+// 	if($("#numeroEmpleado").val()!="" && $("#nombre").val()!="" && 
+// 	   $("#apellidoPaterno").val()!="" && $("#apellidoMaterno").val()!=""&& 
+// 	   $("#edad").val()!="" && $("#direccion").val()!=""){
+// 		   validacion = true;
+// 	   }
+// 	   return validacion;	
+// }

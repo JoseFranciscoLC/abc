@@ -48,8 +48,18 @@
 			}
 		break;
         case "busquedaFiltrada":
-		    $respuesta = $empleado->fun_buscarEmpladoNombreApellidos($_POST["filtro"]);
+		    // $respuesta = $empleado->fun_buscarEmpladoNombreApellidos($_POST["filtro"]);
+            $respuesta = $empleado->fun_buscarEmpleadoNombre($_POST["filtro"]);
 			$respuesta = pg_fetch_all($respuesta);
+			if($respuesta == false){
+				$respuesta = $empleado->fun_buscarEmpleadoApellidoMaterno($_POST["filtro"]);
+				
+				$respuesta = pg_fetch_all($respuesta);
+				if($respuesta == false){
+					$respuesta = $empleado->fun_buscarEmpleadoApellidoPaterno($_POST["filtro"]);
+					$respuesta = pg_fetch_all($respuesta);
+				}
+			}
 		    echo json_encode($respuesta);
         break;		
 		default:

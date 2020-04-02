@@ -139,8 +139,59 @@ BEGIN
 END;
 $BODY$
   LANGUAGE plpgsql VOLATILE
-  COST 100;
-ALTER FUNCTION fun_buscarempleadopornombreoapellidosjose2(text)
-  OWNER TO sysexhibicion;
   
   
+
+
+CREATE OR REPLACE FUNCTION fun_buscarempleadopornombrejose(IN filtro text)
+  RETURNS TABLE(id_empleado integer, numero_empleado integer, nombre text, apellidopaterno text, apellidomaterno text, direccion text, genero character, edad integer, estado integer) AS
+$BODY$
+DECLARE
+    consulta text;
+BEGIN
+     consulta = 'SELECT * FROM empleadosjose WHERE estado = 1';
+
+     
+     consulta := consulta || ' AND nombre ILIKE''%' || filtro || '%''';       
+       consulta := consulta || ' ORDER BY id_empleado';
+       raise notice 'consulta: %',consulta;
+    RETURN QUERY EXECUTE consulta;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  
+
+CREATE OR REPLACE FUNCTION fun_buscarempleadoporapellidopaternojose(IN filtro text)
+  RETURNS TABLE(id_empleado integer, numero_empleado integer, nombre text, apellidopaterno text, apellidomaterno text, direccion text, genero character, edad integer, estado integer) AS
+$BODY$
+DECLARE
+    consulta text;
+BEGIN
+     consulta = 'SELECT * FROM empleadosjose WHERE estado = 1';
+
+     
+     consulta := consulta || ' AND apellidopaterno ILIKE''%' || filtro || '%''';       
+     consulta := consulta || ' ORDER BY id_empleado';
+     raise notice 'consulta: %',consulta;
+     RETURN QUERY EXECUTE consulta;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  
+  
+CREATE OR REPLACE FUNCTION fun_buscarempleadoporapellidomaternojose(IN filtro text)
+  RETURNS TABLE(id_empleado integer, numero_empleado integer, nombre text, apellidopaterno text, apellidomaterno text, direccion text, genero character, edad integer, estado integer) AS
+$BODY$
+DECLARE
+    consulta text;
+BEGIN
+     consulta = 'SELECT * FROM empleadosjose WHERE estado = 1';
+
+     
+     consulta := consulta || ' AND apellidomaterno ILIKE''%' || filtro || '%''';       
+     consulta := consulta || ' ORDER BY id_empleado';
+     raise notice 'consulta: %',consulta;
+     RETURN QUERY EXECUTE consulta;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE

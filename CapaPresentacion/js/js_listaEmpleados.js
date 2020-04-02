@@ -259,7 +259,13 @@ $("#modalActualizar").on("show.bs.modal", function(event){
 
 
 $("#btnAceptarModalActualizar").on("click", function (){
-	
+	if(validarInputs() == false){
+		console.log("Entro en validar inputs " + validarInputs());
+		return;
+	}
+    
+
+
 	datos = {
 		id: $('#idEmpleadoActualizar').val(),
 		numeroEmpleado: $('#numeroEmpleado').val(),
@@ -345,3 +351,69 @@ $("#botonBuscar"). on("click", function(){
 
 
 
+function validarInputs(){	
+	if($("#numeroEmpleado").val() == ""){
+		$("#alertaNumeroEmpleado").removeAttr("hidden");
+		$("#numeroEmpleado").focus();
+		return false;
+	}
+	if($("#nombre").val() == ""){
+		$("#alertaNombre").removeAttr("hidden");
+		$("#nombre").focus();
+		return false; 
+	}
+	if($("#apellidoPaterno").val() == ""){
+		$("#alertaApellidoPaterno").removeAttr("hidden");
+		$("#apellidoPaterno").focus();
+		return false;
+	}
+	if($("#apellidoMaterno").val() == ""){
+		$("#alertaApellidoMaterno").removeAttr("hidden");
+		$("#apellidoMaterno").focus();
+		return false;
+	}
+	if($("#edad").val() == ""){
+		$("#alertaEdad").removeAttr("hidden");
+		$("#edad").focus();
+		return false;
+	}
+	if($("#direccion").val() == ""){
+		$("#alertaDireccion").removeAttr("hidden");
+		$("#direccion").focus();
+		return false;
+	}
+		
+}
+
+$("#numeroEmpleado").blur(function(){
+	if($("#numeroEmpleado").val() != ""){
+        $("#alertaNumeroEmpleado").attr("hidden", "true");
+        // console.log("if blur entro");
+	}	
+});
+
+$("#nombre").blur(function(){
+	if($("#nombre").val() != ""){
+		$("#alertaNombre").attr("hidden", "true");
+	}
+});
+$("#apellidoPaterno").blur(function(){
+	if($("#apellidoPaterno").val() != ""){
+		$("#alertaApellidoPaterno").attr("hidden", "true");
+	}	
+});
+$("#apellidoMaterno").blur(function(){
+	if($("#apellidoMaterno").val() != ""){
+		$("#alertaApellidoMaterno").attr("hidden", "true");
+	}	
+});
+$("#edad").blur(function(){
+	if($("#edad").val() != ""){
+		$("#alertaEdad").attr("hidden", "true");
+	}	
+});
+$("#direccion").blur(function(){
+	if($("#direccion").val() != ""){
+		$("#alertaDireccion").attr("hidden", "true");
+	}
+});

@@ -18,6 +18,11 @@ $('#btnGuardar').on('click', function(e){
 	//alert($('#genero').val());
 	//$('#alertaCorrecta').removeAttr('hidden');
 	// e.preventDefault();
+	if(validarInputs() == false){
+		console.log("Entro en validar inputs " + validarInputs());
+		return;
+	}
+	// console.log("despues de validarInputs " + validarInputs());
 	datos = {
 		numeroEmpleado: $('#numeroEmpleado').val(),
 		nombre: $('#nombre').val(),
@@ -38,8 +43,9 @@ $('#btnGuardar').on('click', function(e){
 	.done(function(respuesta) {
 		console.log("done");
 		console.log(respuesta);
-		$("#btnGuardar").attr("disabled", "true");
+		// $("#btnGuardar").attr("disabled", "true");
 		limpiarInputs();
+		$('#numeroEmpleado').focus();
         $("#alertaRegistrar").removeClass("alert-danger");
 	    $("#alertaRegistrar").addClass("alert-success");
 	    $("#alertaRegistrar").html(" Empleado registrado correctamente");
@@ -51,7 +57,7 @@ $('#btnGuardar').on('click', function(e){
 	.fail(function(respuesta){
 		console.log("ERRORRRRRR");
 		console.log(respuesta);
-        $("#btnGuardar").attr("disabled", "true");
+        // $("#btnGuardar").attr("disabled", "true");
 		limpiarInputs();
         $("#alertaRegistrar").removeClass("alert-success");
 	    $("#alertaRegistrar").addClass("alert-danger");
@@ -77,46 +83,69 @@ function limpiarInputs(){
 		
 };
 
-// $("#alertaRegistrar").fadeIn();
-    // setTimeout(function() {
-		// $("#alertaRegistrar").fadeOut();
-	// },2000);
-
-$("#btnAlerta").on("click", function(){
-	// console.log("boton prueba alerta");
-	// // $("#alertaRegistrar").fadeIn();
-	// $("#alertaRegistrar").removeAttr("hidden");
-	 // setTimeout(function() {
-		// // $("#alertaRegistrar").fadeOut();
-		// $("#alertaRegistrar").attr("hidden", "true");
-	// },2000);
-	// let contenidoAlerta = $("#alertaRegistrar").html();
-	$("#alertaRegistrar").removeClass("alert-danger");
-	$("#alertaRegistrar").addClass("alert-success");
-	// console.log($("#alertaRegistrar").html(" Empleado registrado correctamente"));
-	
-});
-$("#btnAlerta2").on("click", function(){
-	$("#alertaRegistrar").removeClass("alert-success");
-	$("#alertaRegistrar").addClass("alert-danger");
-	// console.log($("#alertaRegistrar").html("ERROR: No se pudo registrar al empleado"));
-});
-	
-	
-// $(".navbarRegistro").on("click", function(){
-	// $(this).addClass("active");
-// });
-
-/*function tiempo(){
-	for(let i = 0; i<=1000; i++){
-		console.log(i);
+function validarInputs(){	
+	if($("#numeroEmpleado").val() == ""){
+		$("#alertaNumeroEmpleado").removeAttr("hidden");
+		$("#numeroEmpleado").focus();
+		return false;
 	}
-	$('#alertaCorrecta').attr('hidden',"");
-	
-	 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-	
-}*/
+	if($("#nombre").val() == ""){
+		$("#alertaNombre").removeAttr("hidden");
+		$("#nombre").focus();
+		return false; 
+	}
+	if($("#apellidoPaterno").val() == ""){
+		$("#alertaApellidoPaterno").removeAttr("hidden");
+		$("#apellidoPaterno").focus();
+		return false;
+	}
+	if($("#apellidoMaterno").val() == ""){
+		$("#alertaApellidoMaterno").removeAttr("hidden");
+		$("#apellidoMaterno").focus();
+		return false;
+	}
+	if($("#edad").val() == ""){
+		$("#alertaEdad").removeAttr("hidden");
+		$("#edad").focus();
+		return false;
+	}
+	if($("#direccion").val() == ""){
+		$("#alertaDireccion").removeAttr("hidden");
+		$("#direccion").focus();
+		return false;
+	}
+		
+}
 
+$("#numeroEmpleado").blur(function(){
+	if($("#numeroEmpleado").val() != ""){
+        $("#alertaNumeroEmpleado").attr("hidden", "true");
+        // console.log("if blur entro");
+	}	
+});
 
+$("#nombre").blur(function(){
+	if($("#nombre").val() != ""){
+		$("#alertaNombre").attr("hidden", "true");
+	}
+});
+$("#apellidoPaterno").blur(function(){
+	if($("#apellidoPaterno").val() != ""){
+		$("#alertaApellidoPaterno").attr("hidden", "true");
+	}	
+});
+$("#apellidoMaterno").blur(function(){
+	if($("#apellidoMaterno").val() != ""){
+		$("#alertaApellidoMaterno").attr("hidden", "true");
+	}	
+});
+$("#edad").blur(function(){
+	if($("#edad").val() != ""){
+		$("#alertaEdad").attr("hidden", "true");
+	}	
+});
+$("#direccion").blur(function(){
+	if($("#direccion").val() != ""){
+		$("#alertaDireccion").attr("hidden", "true");
+	}
+});

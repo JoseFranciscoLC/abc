@@ -102,27 +102,33 @@
 					        <form>					
 			                    <div class="form-group">
                                     <label for="">Número de Empleado</label>
-                                    <input type="number" class="form-control soloNumeros" id="numeroEmpleado">   
+                                    <input type="number" class="form-control soloNumeros" id="numeroEmpleado">
+                                    <div id = "alertaNumeroEmpleado" class = "alert alert-warning" hidden>Ingresa un número de empleado</div>   
                                 </div>				
                                 <div class="form-group">
                                     <label for="">Nombre</label>
-                                    <input type="text" class="form-control soloLetras" id="nombre" >   
+                                    <input type="text" class="form-control soloLetras" id="nombre" >
+                                    <div id = "alertaNombre" class="alert alert-warning" hidden>Ingresa un nombre</div>   
                                 </div>
 				                <div class="form-group">
                                     <label for="">Apellido Paterno</label>
-                                    <input type="text" class="form-control soloLetras" id="apellidoPaterno" >   
+                                    <input type="text" class="form-control soloLetras" id="apellidoPaterno" > 
+                                    <div id = "alertaApellidoPaterno" class="alert alert-warning" hidden>Ingresa un apellido paterno</div>  
                                 </div>
 				                <div class="form-group">
                                     <label for="">Apellido Materno</label>
-                                    <input type="text" class="form-control soloLetras" id="apellidoMaterno" >   
+                                    <input type="text" class="form-control soloLetras" id="apellidoMaterno" > 
+                                    <div id = "alertaApelidoMaterno" class="alert alert-warning" hidden>Ingresa un apellido materno</div>  
                                 </div>
 				                <div class="form-group">
                                     <label for="">Edad</label>
-                                    <input type="text" class="form-control soloNumeros" id="edad" >   
+                                    <input type="text" class="form-control soloNumeros" id="edad" > 
+                                    <div id = "alertaEdad" class="alert alert-warning" hidden>Ingresa una edad</div>  
                                 </div>
 				                <div class="form-group">
                                     <label for="">Dirección</label>
-                                    <input type="text" class="form-control letrasNumerosSimbolos" id="direccion" >   
+                                    <input type="text" class="form-control letrasNumerosSimbolos" id="direccion" >
+                                    <div id = "alertaDireccion" class="alert alert-warning" hidden>Ingresa una dirección</div>   
                                 </div>
 				                <div class="form-group">
 				                    <label>Genero</label>
@@ -138,7 +144,7 @@
                         <div class="modal-footer">
                             <input id = "idEmpleadoActualizar" hidden></input>
                             <button id = "cancelarModal2" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button id = "btnAceptarModalActualizar" type="button" data-dismiss="modal" class="btn btn-primary">Actualizar</button>
+                            <button id = "btnAceptarModalActualizar" type="button" class="btn btn-primary" data-dismiss="modal">Actualizar</button>
                         </div>
                     </div>
                 </div>
