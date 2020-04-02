@@ -1,0 +1,146 @@
+CREATE TABLE empleadosjose
+(
+  id_empleado serial NOT NULL,
+  numero_empleado integer,
+  nombre text,
+  apellidopaterno text,
+  apellidomaterno text,
+  direccion text,
+  genero character(1),
+  edad integer,
+  estado integer DEFAULT 1
+)
+
+
+CREATE OR REPLACE FUNCTION fun_actualizardatosempleadojose(id integer, empleado json)
+  RETURNS integer AS
+$BODY$
+DECLARE
+BEGIN
+    UPDATE empleadosjose
+    SET numero_empleado = CAST(empleado->>'numeroEmpleado' AS INTEGER),
+        nombre = empleado->>'nombre', apellidopaterno = empleado->>'apellidoPaterno',
+        apellidomaterno = empleado->>'apellidoMaterno', direccion = empleado->>'direccion',
+        genero = CAST(empleado->>'genero' AS CHARACTER), edad = CAST(empleado->>'edad' AS INTEGER)
+        WHERE id_empleado = CAST(id AS INTEGER) AND estado = 1;
+        RETURN 1;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  
+ 
+
+CREATE OR REPLACE FUNCTION fun_guardarempleadojose(empleado json)
+  RETURNS integer AS
+$BODY$
+DECLARE 
+
+BEGIN
+    INSERT INTO  empleadosjose (numero_empleado, nombre, apellidopaterno, apellidomaterno, direccion, genero, edad) 
+                              VALUES (CAST(empleado->>'numeroEmpleado' AS INTEGER), empleado->>'nombre',empleado->>'apellidoPaterno', 
+                              empleado->>'apellidoMaterno', empleado->>'direccion',CAST(empleado->>'genero' AS CHARACTER),
+                               CAST(empleado->>'edad' AS INTEGER));
+    RETURN 1;
+ 
+END;
+
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  
+  
+CREATE OR REPLACE FUNCTION fun_buscarempleados2jose()
+  RETURNS TABLE(id_empleado integer, numero_empleado integer, nombre text, apellidopaterno text, apellidomaterno text, direccion text, genero character, edad integer, estado integer) AS
+$BODY$
+DECLARE 
+     consulta text;
+BEGIN
+    consulta = 'SELECT * FROM empleadosjose WHERE estado = 1 ORDER BY id_empleado';
+    RETURN QUERY EXECUTE consulta;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  
+  
+CREATE OR REPLACE FUNCTION fun_buscarempleadosjose() //Borrar
+  RETURNS json AS
+$BODY$
+DECLARE 
+     empleados json;
+BEGIN
+    SELECT array_to_json(array_agg(empleadosjose)) INTO empleados FROM empleadosjose;
+    RETURN empleados;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  
+  
+  
+ CREATE OR REPLACE FUNCTION fun_eliminarempleadojose(id integer)
+  RETURNS integer AS
+$BODY$
+DECLARE
+BEGIN 
+     UPDATE empleadosjose SET estado = 0 WHERE id_empleado = id;
+     RETURN 1;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  
+  
+  
+  
+CREATE OR REPLACE FUNCTION fun_obtenerdatosempleadojose(id integer)
+  RETURNS json AS
+$BODY$
+DECLARE
+    empleado json;
+BEGIN
+    SELECT array_to_json(array_agg(empleadosjose)) INTO empleado 
+           FROM empleadosjose WHERE estado = 1 AND id_empleado = id;
+    RETURN empleado;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  
+  
+  
+  
+ CREATE OR REPLACE FUNCTION fun_buscarempleadopornombreoapellidosjose(IN filtro text)
+  RETURNS TABLE(id_empleado integer, numero_empleado integer, nombre text, apellidopaterno text, apellidomaterno text, direccion text, genero character, edad integer, estado integer) AS
+$BODY$
+DECLARE
+    consulta text;
+BEGIN
+     consulta = 'SELECT * FROM empleadosjose WHERE';
+
+     
+     consulta := consulta || ' nombre ILIKE''%' || filtro || '%''';
+      consulta := consulta || ' OR apellidopaterno ILIKE''%' || filtro || '%''';
+       consulta := consulta || ' OR apellidomaterno ILIKE''%' || filtro || '%''';
+       
+       consulta := consulta || ' ORDER BY id_empleado';
+       raise notice 'consulta: %',consulta;
+    RETURN QUERY EXECUTE consulta;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  
+  
+  CREATE OR REPLACE FUNCTION fun_buscarempleadopornombreoapellidosjose2(filtro text) //Borrar
+  RETURNS json AS
+$BODY$
+DECLARE
+    empleados text;
+BEGIN
+    SELECT array_to_json(array_agg(empleadosjose)) INTO empleados FROM empleadosjose
+    WHERE nombre LIKE '%'||filtro||'%' OR apellidopaterno LIKE '%'||filtro||'%' OR
+    apellidomaterno LIKE '%'||filtro||'%';
+    Return empleados;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION fun_buscarempleadopornombreoapellidosjose2(text)
+  OWNER TO sysexhibicion;
+  
+  

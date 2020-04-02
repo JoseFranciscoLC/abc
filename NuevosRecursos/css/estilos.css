@@ -1,0 +1,49 @@
+#containerIndex{
+	margin-top: 300px;
+
+}
+
+#labelIndex{
+    margin-left: 525px;
+
+}
+
+#containerRegistrar{
+	margin-top: 20px;
+	border: solid 2px;
+	border-radius: 10px;
+	
+}
+#nombreFormulario{
+	text-align: center;
+	padding-top: 20px;
+	
+}
+#alertaCorrecta{
+	text-align: center;
+	font-size: 20px;
+}
+
+ /* .table td, .table th {  */
+     /* padding: .62rem;  */
+     /* vertical-align: top;  */
+     /* border-top: 1px solid #dee2e6;  */
+ /* }  */
+#containerLista{ 
+	 /* margin-top: 20px;     */
+     /* border: solid 2px;     */
+      /* border-radius: 10px;     */
+      /* padding-left: 2px;     */
+      /* padding-right: 2px;   */
+     height: 900px;	 
+	  /* width: 100px;  */
+	 overflow: auto;
+   
+ } 
+body {
+	padding-right: 0px !important; 
+ } 
+/* #tablaC{ */
+	
+/* } */
+
