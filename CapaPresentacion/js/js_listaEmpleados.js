@@ -260,10 +260,11 @@ $("#modalActualizar").on("show.bs.modal", function(event){
 
 $("#btnAceptarModalActualizar").on("click", function (){
 	if(validarInputs() == false){
+		$("#btnAceptarModalActualizar").removeAttr("data-dismiss");
 		console.log("Entro en validar inputs " + validarInputs());
 		return;
 	}
-    
+    $("#btnAceptarModalActualizar").attr("data-dismiss", "modal");
 
 
 	datos = {

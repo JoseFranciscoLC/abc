@@ -118,7 +118,7 @@
 				                <div class="form-group">
                                     <label for="">Apellido Materno</label>
                                     <input type="text" class="form-control soloLetras" id="apellidoMaterno" > 
-                                    <div id = "alertaApelidoMaterno" class="alert alert-warning" hidden>Ingresa un apellido materno</div>  
+                                    <div id = "alertaApellidoMaterno" class="alert alert-warning" hidden>Ingresa un apellido materno</div>  
                                 </div>
 				                <div class="form-group">
                                     <label for="">Edad</label>
@@ -144,7 +144,7 @@
                         <div class="modal-footer">
                             <input id = "idEmpleadoActualizar" hidden></input>
                             <button id = "cancelarModal2" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button id = "btnAceptarModalActualizar" type="button" class="btn btn-primary" data-dismiss="modal">Actualizar</button>
+                            <button id = "btnAceptarModalActualizar" type="button" class="btn btn-primary" >Actualizar</button>
                         </div>
                     </div>
                 </div>
