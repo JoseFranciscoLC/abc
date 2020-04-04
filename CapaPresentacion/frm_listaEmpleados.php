@@ -3,8 +3,9 @@
 	    
 	
 	    <link rel="stylesheet" href="../NuevosRecursos/js/jqwidgets/styles/jqx.base.css" type="text/css" />
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">	
-			<link rel = "stylesheet" href = "../NuevosRecursos/css/bootstrap-dialog.css">
+		<link rel = "stylesheet" href = "../NuevosRecursos/css/bootstrap.min.css">
+        <link rel = "stylesheet" href = "../NuevosRecursos/css/bootstrap.css">  
+		<!-- <link rel = "stylesheet" href = "../NuevosRecursos/css/bootstrap-dialog.css"> -->
 		<link rel = "stylesheet" href = "../NuevosRecursos/css/estilos.css">
 	</head>
 	
@@ -31,41 +32,34 @@
 	    <div class = "container">
 	
 	        <div id = "nombreFormulario">
-		        <h3> Empleados</h3>
+		        <h3> Buscar Empleados</h3>
 		    </div>	
             <div id = "alertaLista" class="alert alert-success alert-dismissible fade show" role="alert" hidden>           
                 ...
+            </div>	        
+            <div> 
+                <div class = "inputFiltro">           
+                    <label>Nombre</label><br>
+                    <input id = "filtroNombre" type = "text" class = "soloLetras">
+                </div>
+                <div class = "inputFiltro"> 
+                    <label>Apellido Paterno</label><br>
+                    <input id = "filtroApellidoPaterno" type = "text" class = "soloLetras">
+                </div>
+                <div class = "inputFiltro"> 
+                    <label>Apellido Materno</label><br>
+                    <input id = "filtroApellidoMaterno" type = "text" class = "soloLetras">
+                </div>
+                <button id = "botonBuscarFiltros" type="button" class="btn btn-primary">Buscar</button>
+                <button id = "botonLimpiar" type="button" class="btn btn-primary">Limpiar</button>
             </div>
-	        <div id = "containerLista" class = "container">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Número Empleado</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Apellido Paterno</th>
-					     	<th scope="col">Apellido Materno</th>
-						    <th scope="col">Dirección</th>
-						    <th scope="col">Genero</th>
-						    <th scope="col">Edad</th>
-						    <th scope="col"></th>
-						    <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody id = "tablaC">
-              
-    
-                    </tbody>
-                </table>           
-	        </div> 
-			<div id="jqxgrid">
-            </div>
-            <!-- Button trigger modal -->
-            <button type="button" id = "grid" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Launch demo modal
-            </button>
 
-            <!-- Modal -->
+            
+             <div id = "tituloTabla">
+                <h3>Lista de Empleados</h3>
+            </div>
+			<div id="jqxgrid">
+            </div>            
             <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -152,13 +146,10 @@
         </div>
 	
 	</body>
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
    
     <script type = "text/javascript" src = "../NuevosRecursos/js/jquery-3.2.1.min.js"></script>
     <script type = "text/javascript" src = "../NuevosRecursos/js/bootstrap.js"></script>
-	<script type = "text/javascript" src = "../NuevosRecursos/js/bootstrap-dialog.js"></script>
+	<!-- <script type = "text/javascript" src = "../NuevosRecursos/js/bootstrap-dialog.js"></script> -->
 	
 	<script type = "text/javascript" src = "../NuevosRecursos/js/funciones.js"></script>
 	<script type="text/javascript" src="../NuevosRecursos/js/jqwidgets/jqx-all.js"></script>

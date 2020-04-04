@@ -1,15 +1,13 @@
 <html>
     <head>
-	    <link rel = "stylesheet" href = "../NuevosRecursos/css/bootstrap-dialog.css">
-				<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">	
-
-	    <!--<link rel = "stylesheet" href = "../NuevosRecursos/css/bootstrap.css">-->		
+	    <link rel = "stylesheet" href = "../NuevosRecursos/css/bootstrap-dialog.css">			
+        <link rel = "stylesheet" href = "../NuevosRecursos/css/bootstrap.min.css">
+	    <link rel = "stylesheet" href = "../NuevosRecursos/css/bootstrap.css">		
 		<link rel = "stylesheet" href = "../NuevosRecursos/css/estilos.css">
 	</head>
 	
 	<body>
 	    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		      <!--<a class="navbar-brand" href="#">Empleados</a>-->
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link active navbarInicio" href="index.php">Inicio </a>

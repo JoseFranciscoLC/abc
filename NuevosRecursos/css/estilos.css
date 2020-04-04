@@ -15,8 +15,8 @@
 	
 }
 #nombreFormulario{
-	text-align: center;
-	padding-top: 20px;
+	text-align: left;
+	padding-top: 10px;
 	
 }
 #alertaCorrecta{
@@ -43,6 +43,17 @@
 body {
 	padding-right: 0px !important; 
  } 
+.inputFiltro{
+	display:inline-block;
+	margin-left: 5px;
+	margin-bottom: 10px;
+}
+#tituloTabla{
+	margin-top: 20px;
+}
+#botonBuscarFiltros{
+	margin-left: 5px;
+}
 /* #tablaC{ */
 	
 /* } */

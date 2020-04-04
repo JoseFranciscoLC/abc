@@ -1,18 +1,4 @@
 $(document).ready(function(){
-	// var fe = "mueble";
-// $("#TablaC").html("<td> casa</td>");
-	
-	datos = [
-		{
-			nombre: "jose",
-			casa: "en un ligar"
-		},
-		{
-			nombre: "fran",
-			casa: "casaFRA"
-		}
-	]
-	
     $.ajax({
 		url: "ajax/proc_listaEmpleados.php",
 		type: "POST",
@@ -20,38 +6,10 @@ $(document).ready(function(){
 		data: {opcion: "buscar"}
 		
 	})
-	.done(function(respuesta){
-		// var res = respuesta;
+	.done(function(respuesta){		
 		console.log("Done");
-		// console.log(respuesta);
-		// console.log(respuesta);
-		// let datos = "";
-		// for(var i = 0; i < respuesta.length; i++){
-		// $("#tablaC").html("<tr><td>casa</td></tr>");
-		// datos += "<tr>"+
-		             // "<td>"+ respuesta[i]["id_empleado"] +"</td>"+
-			         // "<td>"+ respuesta[i]["numero_empleado"] +"</td>"+
-					 // "<td>"+ respuesta[i]["nombre"] +"</td>"+
-			         // "<td>"+ respuesta[i]["apellidoPaterno"] +"</td>"+
-					 // "<td>"+ respuesta[i]["apellidoMaterno"] +"</td>"+
-			         // "<td>"+ respuesta[i]["direccion"] +"</td>"+
-					 // "<td>"+ respuesta[i]["genero"] +"</td>"+
-			         // "<td>"+ respuesta[i]["edad"] +"</td>"
-			     // +"</tr>";
-		    
-		
-		// }
-		// $("#tablaC").html(datos);
-		
-		
-		// console.log(respuesta["nombre"]);
-		
-		// console.log(datos);
-		llenarTabla(respuesta);
         llenarGrid(respuesta);
-		console.log(respuesta);
-		
-		
+		console.log(respuesta);	
 	
 	})
 	.fail(function(respuesta){
@@ -60,43 +18,6 @@ $(document).ready(function(){
 	});
 	
 });
-
-function llenarTabla(informacion){
-	let datos="";
-	for(var i = 0; i < informacion.length; i++){
-		// $("#tablaC").html("<tr><td>casa</td></tr>");
-		datos += "<tr>"+
-		             "<td>"+ informacion[i]["id_empleado"] +"</td>"+
-			         "<td>"+ informacion[i]["numero_empleado"] +"</td>"+
-					 "<td>"+ informacion[i]["nombre"] +"</td>"+
-			         "<td>"+ informacion[i]["apellidopaterno"] +"</td>"+
-					 "<td>"+ informacion[i]["apellidomaterno"] +"</td>"+
-			         "<td>"+ informacion[i]["direccion"] +"</td>"+
-					 "<td>"+ informacion[i]["genero"] +"</td>"+
-			         "<td>"+ informacion[i]["edad"] +"</td>"+
-					 "<td><button id = 'botonActualizar' data-numero = '"+informacion[i]["id_empleado"]+"' type = 'button'"+
-                          "class = 'btn btn-info' data-toggle='modal' data-target='#modalActualizar'>Actualizar</button></td>"+				 
-					 
-					 "<td><button id = 'botonEliminar' data-numero = '"+informacion[i]["id_empleado"]+"' type = 'button'"+
-                          "class = 'btn btn-danger' data-toggle='modal' data-target='#modalEliminar'>Eliminar</button></td>"
-			     +"</tr>";
-		    
-		
-		}
-		$("#tablaC").html(datos);
-		// console.log(datos);
-}
-
-// $(document).on('click', '#botonEliminar', function(){
-	// // alert("Funciona");
-	// // let elemento = this.parentElement.parentElement;
-    // // let id = $(elemento).attr("idEmpleado", "casa");
-	
-    // // $(this).attr("data-numero", 2);
-	
-// console.log("click boton");
-	
-// });
 
 
 $("#modalEliminar").on("show.bs.modal", function(event){
@@ -132,7 +53,7 @@ $("#btnAceptarModalEliminar").on("click", function(){
 	})
     .done(function(respuesta){
         console.log("Correcto en eliminar");
-        llenarTabla(respuesta); 
+         
 		llenarGrid(respuesta);
 		$("#alertaLista").removeClass("alert-danger");
         $("#alertaLista").removeClass("alert-warning");
@@ -206,7 +127,7 @@ function llenarGrid(arreglo){
     columns: [
       {text: 'id', datafield: 'id_empleado', width:'6%'},
       {text: 'Numero de Empleado', datafield: 'numero_empleado', width:'20%'},
-      {text: 'Nombre', datafield: 'nombre', width:'20%'},
+      {text: 'Nombre', datafield: 'nombre', width:'15%'},
       {text: 'Apellido Paterno', datafield: 'apellidopaterno', width:'17%'},
       {text: 'Apellido materno', datafield: 'apellidomaterno', width:'17%'},
       {text: 'Edad', datafield: 'edad', width:'6%'},
@@ -286,7 +207,7 @@ $("#btnAceptarModalActualizar").on("click", function (){
 	})
 	.done(function(respuesta){
 		console.log("Correcto en actualizar");
-		llenarTabla(respuesta);
+		
 		llenarGrid(respuesta);
         $("#alertaLista").removeClass("alert-danger");
         $("#alertaLista").removeClass("alert-warning");
@@ -338,7 +259,7 @@ $("#botonBuscar"). on("click", function(){
 		      $("#alertaLista").attr("hidden", "true");
 	        },2500);
         } else{
-            llenarTabla(respuesta);  
+            
 			llenarGrid(respuesta);
         }
 		 
@@ -417,4 +338,48 @@ $("#direccion").blur(function(){
 	if($("#direccion").val() != ""){
 		$("#alertaDireccion").attr("hidden", "true");
 	}
+});
+
+$("#botonBuscarFiltros").on("click", function(){   
+
+	datos = {
+		nombre: $("#filtroNombre").val(),
+		apellidoPaterno: $("#filtroApellidoPaterno").val(),
+		apellidoMaterno: $("#filtroApellidoMaterno").val(),
+		opcion: "busquedaFiltradaCompleta"
+	}
+	$.ajax({
+		url: "ajax/proc_listaEmpleados.php",
+		type: "POST",
+		dataType: "json",
+		data: datos
+	})
+	.done(function(respuesta){
+		console.log("Correcto en Busqueda Filtrada");
+		console.log(respuesta);
+        if(respuesta == false){
+            $("#alertaLista").removeClass("alert-success");
+            $("#alertaLista").removeClass("alert-danger");
+	        $("#alertaLista").addClass("alert-warning");
+	        $("#alertaLista").html("No se encontro el empleado");
+            $("#alertaLista").removeAttr("hidden");
+            setTimeout(function() {
+		      $("#alertaLista").attr("hidden", "true");
+	        },2500);
+        } else{
+             
+			llenarGrid(respuesta);
+        }
+		 
+	})
+	.fail(function(respuesta){
+		console.log("ERROR en Busqueda Filtrada");
+		console.log(respuesta);
+	});
+});
+
+$("#botonLimpiar").on("click", function(){
+	$("#filtroNombre").val("");
+	$("#filtroApellidoPaterno").val("");
+	$("#filtroApellidoMaterno").val("");
 });

@@ -61,7 +61,31 @@
 				}
 			}
 		    echo json_encode($respuesta);
-        break;		
+        break;	
+        case "busquedaFiltradaCompleta":
+		    // $respuesta = $empleado->fun_buscarEmpladoNombreApellidos($_POST["filtro"]);
+            $nombre = $_POST["nombre"];
+            $apellidoPaterno = $_POST["apellidoPaterno"];
+            $apellidoMaterno = $_POST["apellidoMaterno"];
+            
+            if($nombre != "" && $apellidoPaterno != "" && $apellidoMaterno != "") {
+                $respuesta = $empleado->fun_buscarEmpleadoActivoNombreApellidos($nombre, $apellidoPaterno, $apellidoMaterno);
+            } else if($nombre != "" && $apellidoPaterno != "" && $apellidoMaterno == "") {
+                 $respuesta = $empleado->fun_buscarEmpleadoActivoNombreApellidoPaterno($nombre, $apellidoPaterno);
+            } else if($nombre != "" && $apellidoMaterno != "" && $apellidoPaterno == "") {
+                $respuesta = $empleado->fun_buscarEmpleadoActivoNombreApellidoMaterno($nombre, $apellidoPaterno);
+            } else if($apellidoPaterno != "" && $apellidoMaterno != "" && $nombre == "") {
+                $respuesta = $empleado->fun_buscarEmpleadoActivoApellidos($apellidoPaterno, $apellidoMaterno);
+            } else if($nombre != "" && $apellidoPaterno == "" && $apellidoMaterno == "") {
+                $respuesta = $empleado->fun_buscarEmpleadoNombre($nombre);
+            } else if($apellidoPaterno != "" && $nombre == "" && $apellidoMaterno == "") {
+                $respuesta = $empleado->fun_buscarEmpleadoApellidoPaterno($apellidoPaterno);
+            } else {
+                $respuesta = $empleado->fun_buscarEmpleadoApellidoMaterno($apellidoMaterno);
+            }
+			$respuesta = pg_fetch_all($respuesta);
+		    echo json_encode($respuesta);
+        break;	
 		default:
 		break;
 		

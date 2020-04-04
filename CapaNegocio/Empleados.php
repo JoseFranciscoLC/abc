@@ -92,4 +92,21 @@
 			$consulta = "SELECT * FROM fun_buscarempleadoporapellidomaternojose($$".$filtro."$$)";
 			return $this->sql($consulta);
 		}
+		public function fun_buscarEmpleadoActivoNombreApellidos($nombre, $apellidoP, $apellidoM){
+			$consulta = "SELECT * FROM fun_buscarempleadoactivopornombreapellidosjose($$".$nombre."$$, $$".$apellidoP."$$, $$".$apellidoM."$$)";
+			return $this->sql($consulta);
+		}
+		public function fun_buscarEmpleadoActivoNombreApellidoPaterno($nombre, $apellidoP){
+			$consulta = "SELECT * FROM fun_buscarempleadoactivopornombreapellidopaternojose($$".$nombre."$$, $$".$apellidoP."$$)";
+			return $this->sql($consulta);
+		}
+		public function fun_buscarEmpleadoActivoNombreApellidoMaterno($nombre, $apellidoM){
+			$consulta = "SELECT * FROM fun_buscarempleadoactivopornombreapellidomaternojose($$".$nombre."$$, $$".$apellidoM."$$)";
+			return $this->sql($consulta);
+		}
+		public function fun_buscarEmpleadoActivoApellidos($apellidoP, $apellidoM){
+			$consulta = "SELECT * FROM fun_buscarempleadoactivoporapellidosjose($$".$apellidoP."$$, $$".$apellidoM."$$)";
+			return $this->sql($consulta);
+		}
+
 	}
