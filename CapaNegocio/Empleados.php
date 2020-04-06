@@ -1,6 +1,5 @@
 <?php
-    require_once("../../CapaDatos/Conexion.php");
-	
+    require_once("../../CapaDatos/Conexion.php");	
 	class Empleados
 	{
 		private $numeroEmpleado;
@@ -108,5 +107,4 @@
 			$consulta = "SELECT * FROM fun_buscarempleadoactivoporapellidosjose($$".$apellidoP."$$, $$".$apellidoM."$$)";
 			return $this->sql($consulta);
 		}
-
 	}

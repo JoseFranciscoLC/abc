@@ -3,100 +3,31 @@ $(document).ready(function(){
 		url: "ajax/proc_listaEmpleados.php",
 		type: "POST",
 		dataType: "json",
-		data: {opcion: "buscar"}
-		
+		data: {opcion: "buscar"}		
 	})
-	.done(function(respuesta){		
-		console.log("Done");
+	.done(function(respuesta){			
         llenarGrid(respuesta);
-		console.log(respuesta);	
-	
+			
 	})
 	.fail(function(respuesta){
-		console.log("ERROR");
-		console.log(respuesta);
-	});
-	
-});
-
-
-$("#modalEliminar").on("show.bs.modal", function(event){
-    // $("#contenidoModal").html("no se pudo guraar");
-    var boton = $(event.relatedTarget); // Button that triggered the modal
-    var id = boton.data('numero');
-	var nombre = boton.data('nombre');
-      // console.log(lo.data('numero'));
-    $("#contenidoModalEliminar").html("Seguro que quiere eliminar a " + nombre);
-	console.log(nombre);
-	
-    $("#inputId").val(id);
-     // console.log("llllllll");
-    // console.log("show.bs.modal");
-});
-
-$("#btnAceptarModalEliminar").on("click", function(){
-	// $("#contenidoModal").html("no se pudo guraar");
-	// window.location = "frm_listaEmpleados.php";
-	// console.log("boton modal");
-    // let idEmpleado = $("#inputId").val();
-    // $("#contenidoModal").html(idEmpleado);
-    
-    $.ajax({
-		url: "ajax/proc_listaEmpleados.php",
-		type: "POST",
-		dataType: "json",
-		data: {
-                 opcion: "eliminar",
-                 id: $("#inputId").val()
-              }
 		
-	})
-    .done(function(respuesta){
-        console.log("Correcto en eliminar");
-         
-		llenarGrid(respuesta);
-		$("#alertaLista").removeClass("alert-danger");
-        $("#alertaLista").removeClass("alert-warning");
-	    $("#alertaLista").addClass("alert-success");
-	    $("#alertaLista").html("Se eliminó el empleado");
-		$("#alertaLista").removeAttr("hidden");
-	    setTimeout(function() {
-		    $("#alertaLista").attr("hidden", "true");
-	    },2500);
-    
-    })
-    .fail(function(respuesta){
-        console.log("ERROR En el modal");
-        console.log(respuesta);
-		$("#alertaLista").removeClass("alert-success");
-        $("#alertaLista").removeClass("alert-warning");
-	    $("#alertaLista").addClass("alert-danger");
-	    $("#alertaLista").html("ERROR: No se pudo eliminar el empleado");
-        $("#alertaLista").removeAttr("hidden");
-	    setTimeout(function() {
-		   $("#alertaLista").attr("hidden", "true");
-	    },2500);
-    });
-    // $("#exampleModal").modal('dispose');
-       
+	});	
 });
 
 function llenarGrid(arreglo){
- $("#jqxgrid").jqxGrid('clear');
+ $("#jqxgrid").jqxGrid("clear");
   var estado = 0;
-  var generos = function (row, datafield, value) {
-    if (value == 'F'){
+  var generos = function (row, datafield, value){
+    if (value == "F"){
       return "&nbsp;Femenino";
     } else {
       return "&nbsp;Masculino";
     }
   };
-  var botones = function (row, datafield, value,rowdata) {
-    var data = $('#jqxgrid').jqxGrid('getrowdata', row);
+  var botones = function (row, datafield, value,rowdata){
+    var data = $("#jqxgrid").jqxGrid("getrowdata", row);
     var nombre = "";
-	nombre = nombre.concat(data.nombre + " " + data.apellidopaterno + " " +data.apellidomaterno);
-
-	  
+	nombre = nombre.concat(data.nombre + " " + data.apellidopaterno + " " +data.apellidomaterno);	  
     var btn = "<button id = 'botonActualizar' data-numero = '"+data.id_empleado+"' type = 'button'"+
                  "class = 'btn btn-info btn-sm' data-toggle='modal' data-target='#modalActualizar'>Actualizar</button>";
      
@@ -115,40 +46,73 @@ function llenarGrid(arreglo){
     loadError: function (xhr, status, error) { }
   });
   $("#jqxgrid").jqxGrid({
-    width: '100%',
+    width: "100%",
     autoheight:true,
     pageable: true,
     sortable: true,
-    selectionmode: '',
-    editmode: 'click',
-    pagermode: 'simple',
+  
+    pagermode: "simple",
     source: dataAdapter,
     disabled: false,
     columns: [
-      {text: 'id', datafield: 'id_empleado', width:'6%'},
-      {text: 'Numero de Empleado', datafield: 'numero_empleado', width:'20%'},
-      {text: 'Nombre', datafield: 'nombre', width:'15%'},
-      {text: 'Apellido Paterno', datafield: 'apellidopaterno', width:'17%'},
-      {text: 'Apellido materno', datafield: 'apellidomaterno', width:'17%'},
-      {text: 'Edad', datafield: 'edad', width:'6%'},
-      {text: 'Genero', datafield: 'genero', width:'10%', cellsrenderer: generos},      
-      {text: 'Opciones', width:'18%',datafield:'',cellsrenderer: botones}
+      {text: "id", datafield: "id_empleado", width:"6%"},
+      {text: "Numero de Empleado", datafield: "numero_empleado", width:"20%"},
+      {text: "Nombre", datafield: "nombre", width:"10%"},
+      {text: "Apellido Paterno", datafield: "apellidopaterno", width:"17%"},
+      {text: "Apellido materno", datafield: 'apellidomaterno', width:"17%"},
+      {text: "Edad", datafield: "edad", width:"6%"},
+      {text: "Genero", datafield: "genero", width:"8%", cellsrenderer: generos},      
+      {text: "Opciones", width:"17%",datafield:"",cellsrenderer: botones}
     ]
 
   });
 
 }
 
+$("#modalEliminar").on("show.bs.modal", function(event){   
+    var boton = $(event.relatedTarget); 
+    var id = boton.data('numero');
+	var nombre = boton.data('nombre');    
+    $("#contenidoModalEliminar").html("Seguro que quiere eliminar a " + nombre);	
+    $("#inputId").val(id);     
+});
+$("#btnAceptarModalEliminar").on("click", function(){    
+    $.ajax({
+		url: "ajax/proc_listaEmpleados.php",
+		type: "POST",
+		dataType: "json",
+		data: {
+                 opcion: "eliminar",
+                 id: $("#inputId").val()
+              }		
+	})
+    .done(function(respuesta){         
+		llenarGrid(respuesta);
+		$("#alertaLista").removeClass("alert-danger");
+        $("#alertaLista").removeClass("alert-warning");
+	    $("#alertaLista").addClass("alert-success");
+	    $("#alertaLista").html("El empleado ha sido eliminado");
+		$("#alertaLista").removeAttr("hidden");
+	    setTimeout(function() {
+		    $("#alertaLista").attr("hidden", "true");
+	    },2500);    
+    })
+    .fail(function(respuesta){        
+		$("#alertaLista").removeClass("alert-success");
+        $("#alertaLista").removeClass("alert-warning");
+	    $("#alertaLista").addClass("alert-danger");
+	    $("#alertaLista").html("ERROR: No se pudo eliminar el empleado");
+        $("#alertaLista").removeAttr("hidden");
+	    setTimeout(function() {
+		   $("#alertaLista").attr("hidden", "true");
+	    },2500);
+    });      
+});
+
 $("#modalActualizar").on("show.bs.modal", function(event){
-    // $("#contenidoModal").html("no se pudo guraar");
-    var boton = $(event.relatedTarget); // Button that triggered the modal
+    var boton = $(event.relatedTarget); 
     var idEmpleado = boton.data('numero');
-      // console.log(lo.data('numero'));
-    // $("#contenidoModal").html(id);
-    $("#idEmpleadoActualizar").val(idEmpleado);
-     // console.log("llllllll");
-    // console.log("show.bs.modal");
-	
+    $("#idEmpleadoActualizar").val(idEmpleado);	
 	 $.ajax({
 		url: "ajax/proc_listaEmpleados.php",
 		type: "POST",
@@ -156,38 +120,28 @@ $("#modalActualizar").on("show.bs.modal", function(event){
 		data: {
                  opcion: "buscarEmpleado",
                  id: idEmpleado
-              }
-		
+              }		
 	})
     .done(function(respuesta){
-        console.log("Correcto en actualizar");
-        console.log(respuesta); 
 		$("#numeroEmpleado").val(respuesta[0].numero_empleado);
 		$("#nombre").val(respuesta[0].nombre);
 		$("#apellidoPaterno").val(respuesta[0].apellidopaterno);
 		$("#apellidoMaterno").val(respuesta[0].apellidomaterno);
 		$("#edad").val(respuesta[0].edad);
 		$("#direccion").val(respuesta[0].direccion);
-		$("#genero").val(respuesta[0].genero);
-    
+		$("#genero").val(respuesta[0].genero);    
     })
     .fail(function(respuesta){
-        console.log("ERROR En el modal");
-        console.log(respuesta);
+
     });
 });
 
-
-
 $("#btnAceptarModalActualizar").on("click", function (){
 	if(validarInputs() == false){
-		$("#btnAceptarModalActualizar").removeAttr("data-dismiss");
-		console.log("Entro en validar inputs " + validarInputs());
+		$("#btnAceptarModalActualizar").removeAttr("data-dismiss");		
 		return;
 	}
     $("#btnAceptarModalActualizar").attr("data-dismiss", "modal");
-
-
 	datos = {
 		id: $('#idEmpleadoActualizar').val(),
 		numeroEmpleado: $('#numeroEmpleado').val(),
@@ -205,9 +159,7 @@ $("#btnAceptarModalActualizar").on("click", function (){
 		dataType: "json",
 		data: datos
 	})
-	.done(function(respuesta){
-		console.log("Correcto en actualizar");
-		
+	.done(function(respuesta){	
 		llenarGrid(respuesta);
         $("#alertaLista").removeClass("alert-danger");
         $("#alertaLista").removeClass("alert-warning");
@@ -219,8 +171,6 @@ $("#btnAceptarModalActualizar").on("click", function (){
 	    },2500);
 	})
 	.fail(function(respuesta){
-		console.log("ERROR en Actualizar");
-		console.log(respuesta);
         $("#alertaLista").removeClass("alert-success");
         $("#alertaLista").removeClass("alert-warning");
 	    $("#alertaLista").addClass("alert-danger");
@@ -229,14 +179,11 @@ $("#btnAceptarModalActualizar").on("click", function (){
 	    setTimeout(function() {
 		   $("#alertaLista").attr("hidden", "true");
 	    },2500);
-	});
-	
+	});	
 });
 
 $("#botonBuscar"). on("click", function(){
-	console.log($("#inputBuscar").val());
-    var estado = 0;//no en uso borrar despues
-	
+    var estado = 0;	
 	$.ajax({
 		url: "ajax/proc_listaEmpleados.php",
 		type: "POST",
@@ -247,8 +194,6 @@ $("#botonBuscar"). on("click", function(){
 		      }
 	})
 	.done(function(respuesta){
-		console.log("Correcto en Busqueda Filtrada");
-		console.log(respuesta);
         if(respuesta == false){
             $("#alertaLista").removeClass("alert-success");
             $("#alertaLista").removeClass("alert-danger");
@@ -258,20 +203,14 @@ $("#botonBuscar"). on("click", function(){
             setTimeout(function() {
 		      $("#alertaLista").attr("hidden", "true");
 	        },2500);
-        } else{
-            
+        } else{            
 			llenarGrid(respuesta);
-        }
-		 
+        }		 
 	})
 	.fail(function(respuesta){
-		console.log("ERROR en Busqueda Filtrada");
-		console.log(respuesta);
 	});
 	$("#inputBuscar").val("");
 });
-
-
 
 function validarInputs(){	
 	if($("#numeroEmpleado").val() == ""){
@@ -310,7 +249,7 @@ function validarInputs(){
 $("#numeroEmpleado").blur(function(){
 	if($("#numeroEmpleado").val() != ""){
         $("#alertaNumeroEmpleado").attr("hidden", "true");
-        // console.log("if blur entro");
+       
 	}	
 });
 
@@ -341,7 +280,6 @@ $("#direccion").blur(function(){
 });
 
 $("#botonBuscarFiltros").on("click", function(){   
-
 	datos = {
 		nombre: $("#filtroNombre").val(),
 		apellidoPaterno: $("#filtroApellidoPaterno").val(),
@@ -355,8 +293,6 @@ $("#botonBuscarFiltros").on("click", function(){
 		data: datos
 	})
 	.done(function(respuesta){
-		console.log("Correcto en Busqueda Filtrada");
-		console.log(respuesta);
         if(respuesta == false){
             $("#alertaLista").removeClass("alert-success");
             $("#alertaLista").removeClass("alert-danger");
@@ -365,16 +301,16 @@ $("#botonBuscarFiltros").on("click", function(){
             $("#alertaLista").removeAttr("hidden");
             setTimeout(function() {
 		      $("#alertaLista").attr("hidden", "true");
+
 	        },2500);
-        } else{
+        } else {
              
 			llenarGrid(respuesta);
         }
 		 
 	})
 	.fail(function(respuesta){
-		console.log("ERROR en Busqueda Filtrada");
-		console.log(respuesta);
+		
 	});
 });
 
