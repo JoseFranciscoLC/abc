@@ -25,7 +25,7 @@
                 </form>
         </nav>
 	    <div class = "container">	
-	        <div id = "nombreFormulario">
+	        <div id = "nombreFormularioLista">
 		        <h3> Buscar Empleados</h3>
 		    </div>	
             <div id = "alertaLista" class = "alert alert-success alert-dismissible fade show" role="alert" hidden>           
@@ -45,7 +45,8 @@
                     <input id = "filtroApellidoMaterno" type = "text" class = "soloLetrasNoEspacio">
                 </div>
                 <button id = "botonBuscarFiltros" title = "Buscar" type = "button" class = "btn btn-primary"><i class = "fa fa-search"></i></button>
-                <button id = "botonLimpiar" title = "Limpiar" type = "button" class = "btn btn-primary"><i class = "fa fa-eraser"></i></button>
+                <button id = "botonLimpiar" title = "Limpiar" type = "button" class = "btn btn-primary"><i class = "fa fa-eraser"></i></button>                
+                <a id = "descarga" href="rpt_empleados.php" title = "Guardar la lista de empleados completa"><button id = "botonPdf" class = "btn btn-primary">PDF</button></a>
             </div>            
             <div id = "tituloTabla">
                 <h3>Lista de Empleados</h3>

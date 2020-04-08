@@ -6,7 +6,7 @@ $(document).ready(function(){
 		data: {opcion: "buscar"}		
 	})
 	.done(function(respuesta){			
-        llenarGrid(respuesta);
+        llenarGrid(respuesta);      
 			
 	})
 	.fail(function(respuesta){
@@ -56,12 +56,13 @@ function llenarGrid(arreglo){
     disabled: false,
     columns: [
       {text: "id", datafield: "id_empleado", width:"6%"},
-      {text: "Numero de Empleado", datafield: "numero_empleado", width:"20%"},
+      {text: "Numero de Empleado", datafield: "numero_empleado", width:"14%"},
       {text: "Nombre", datafield: "nombre", width:"10%"},
-      {text: "Apellido Paterno", datafield: "apellidopaterno", width:"17%"},
-      {text: "Apellido materno", datafield: 'apellidomaterno', width:"17%"},
+      {text: "Apellido Paterno", datafield: "apellidopaterno", width:"15%"},
+      {text: "Apellido materno", datafield: "apellidomaterno", width:"15%"},
       {text: "Edad", datafield: "edad", width:"6%"},
-      {text: "Genero", datafield: "genero", width:"8%", cellsrenderer: generos},      
+      {text: "Genero", datafield: "genero", width:"8%", cellsrenderer: generos},
+      {text: "Dirección", datafield: "direccion", width:"12%"},      
       {text: "Opciones", width:"17%",datafield:"",cellsrenderer: botones}
     ]
 
