@@ -24,7 +24,7 @@ function llenarGrid(arreglo){
       return "&nbsp;Masculino";
     }
   };
-  var botones = function (row, datafield, value,rowdata){
+  var botones = function (row, datafield, value){
     var data = $("#jqxgrid").jqxGrid("getrowdata", row);
     var nombre = "";
 	nombre = nombre.concat(data.nombre + " " + data.apellidopaterno + " " +data.apellidomaterno);	  
@@ -55,7 +55,7 @@ function llenarGrid(arreglo){
     source: dataAdapter,
     disabled: false,
     columns: [
-      {text: "id", datafield: "id_empleado", width:"6%"},
+      {text: "Id", datafield: "id_empleado", width:"4%"},
       {text: "Numero de Empleado", datafield: "numero_empleado", width:"14%"},
       {text: "Nombre", datafield: "nombre", width:"10%"},
       {text: "Apellido Paterno", datafield: "apellidopaterno", width:"15%"},
@@ -182,9 +182,13 @@ $("#btnAceptarModalActualizar").on("click", function (){
 	    },2500);
 	});	
 });
+$('#inputBuscar').on("keypress", function(e){
+	if(e.keyCode == 13){
+         e.preventDefault();
+    }
 
+});
 $("#botonBuscar"). on("click", function(){
-    var estado = 0;	
 	$.ajax({
 		url: "ajax/proc_listaEmpleados.php",
 		type: "POST",
@@ -253,7 +257,6 @@ $("#numeroEmpleado").blur(function(){
        
 	}	
 });
-
 $("#nombre").blur(function(){
 	if($("#nombre").val() != ""){
 		$("#alertaNombre").attr("hidden", "true");

@@ -72,7 +72,7 @@ function validarInputs(){
 		$("#apellidoMaterno").focus();
 		return false;
 	}
-	if($("#edad").val() == ""){
+	if($("#edad").val() == "" || $("#edad").val() < 1){
 		$("#alertaEdad").removeAttr("hidden");
 		$("#edad").focus();
 		return false;
@@ -88,7 +88,6 @@ $("#numeroEmpleado").blur(function(){
         $("#alertaNumeroEmpleado").attr("hidden", "true");        
 	}	
 });
-
 $("#nombre").blur(function(){
 	if($("#nombre").val() != ""){
 		$("#alertaNombre").attr("hidden", "true");
@@ -113,4 +112,14 @@ $("#direccion").blur(function(){
 	if($("#direccion").val() != ""){
 		$("#alertaDireccion").attr("hidden", "true");
 	}
+});
+
+$("#edad").on("keypress", function(e){
+       // console.log("se presiono una tecla");
+         cadena = $("#edad").val();
+   if(cadena.length > 2){
+         e.preventDefault();
+   } else {
+        // console.log("Aun esta en el limite");
+   }
 });

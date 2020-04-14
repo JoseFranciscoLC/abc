@@ -9,7 +9,8 @@
                 <div class = "navbar-nav">
                     <a class = "nav-item nav-link active" href = "index.php">Inicio </a>
                     <a class = "nav-item nav-link" href = "frm_registrarEmpleado.php">Registro de Empleados</a>
-                    <a class = "nav-item nav-link"  href = "frm_listaEmpleados.php">Lista de Empleados</a>                   
+                    <a class = "nav-item nav-link"  href = "frm_listaEmpleados.php">Lista de Empleados</a> 
+                     <a class = "nav-item nav-link"  href = "frm_subirArchivoPrueba.php">Archivo</a>                  
                 </div>
     </nav>
 	<div id = "containerIndex" class = "container">	    
