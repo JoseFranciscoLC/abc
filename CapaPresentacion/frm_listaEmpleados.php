@@ -18,7 +18,7 @@
                     <li id = "listaEmplados" class = "nav-item active">
                         <a class = "nav-link" href = "frm_listaEmpleados.php">Lista de Empleados</a>
                     </li> 	
-                     <a class = "nav-item nav-link"  href = "frm_subirArchivoPrueba.php">Archivo</a>				
+                     <a class = "nav-item nav-link"  href = "frm_subirArchivoPrueba.php">Archivos</a>				
                 </ul>
                 <form class = "form-inline my-2 my-lg-0">
                     <input id = "inputBuscar" class="form-control mr-sm-2 soloLetras" type = "search" placeholder = "Buscar Empleado" aria-label = "Search">
@@ -47,7 +47,7 @@
                 </div>
                 <button id = "botonBuscarFiltros" title = "Buscar" type = "button" class = "btn btn-primary"><i class = "fa fa-search"></i></button>
                 <button id = "botonLimpiar" title = "Limpiar" type = "button" class = "btn btn-primary"><i class = "fa fa-eraser"></i></button>                
-                <a id = "descarga" href="rpt_empleados.php" title = "Descargar la lista de empleados como pdf"><button id = "botonPdf" class = "btn btn-primary">				                                                                                              <i class = "fa fa-download"></i></button></a>
+                <a id = "descarga" href="rpt_empleados.php" title = "Descargar la lista de empleados como pdf"><button id = "botonPdf" class = "btn btn-primary">                    <i class = "fa fa-download"></i></button></a>
             </div>            
             <div id = "tituloTabla">
                 <h3>Lista de Empleados</h3>

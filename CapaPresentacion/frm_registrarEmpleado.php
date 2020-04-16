@@ -11,7 +11,7 @@
                     <a class = "nav-item nav-link" href = "index.php">Inicio </a>
                     <a class = "nav-item nav-link active" href = "frm_registrarEmpleado.php">Registro de Empleados</a>
                     <a class = "nav-item nav-link"  href = "frm_listaEmpleados.php">Lista de Empleados</a>
-                     <a class = "nav-item nav-link"  href = "frm_subirArchivoPrueba.php">Archivo</a>                   
+                     <a class = "nav-item nav-link"  href = "frm_subirArchivoPrueba.php">Archivos</a>                   
                 </div>
         </nav>
 	<div class = "container">	

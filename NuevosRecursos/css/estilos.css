@@ -37,4 +37,26 @@ body{
 .EtiquetaCampoActualizar{
 	font-weight: 600;
 }
+/* #fieldsetArchivo{ */
+	/* border: 1px; */
+/* } */
+  /* height: 900px;	 	   */
+	 /* overflow: auto; */
+	 
+	 
+#formularioArchivo{
+	/*margin-top: 20px;*/
+	display: inline-block;
+}
+#alertaSubirArchivos{
+	margin-top: 20px;
+}
+#subirBuscarArchivos{
+	margin-top: 20px;
+}
+#buscarArchivos{
+	display: inline-block;
+	margin-left: 250px;
+
+}
 

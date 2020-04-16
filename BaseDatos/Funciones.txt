@@ -270,10 +270,48 @@ BEGIN
 
      
      consulta := consulta || ' AND nombre ILIKE''%' || pNombre || '%''';
-   consulta := consulta || ' AND apellidomaterno ILIKE''%' || pApellidoM || '%''';
+     consulta := consulta || ' AND apellidomaterno ILIKE''%' || pApellidoM || '%''';
      consulta := consulta || ' ORDER BY id_empleado';
        raise notice 'consulta: %',consulta;
     RETURN QUERY EXECUTE consulta;
 END;
 $BODY$
 LANGUAGE 'plpgsql' VOLATILE
+
+CREATE TABLE archivosjose(
+    id_archivo serial,
+    nombre_archivo text,
+    ruta_archivo text,
+    estado_archivo integer DEFAULT 1
+)
+
+CREATE OR REPLACE FUNCTION fun_guardararchivojose(archivo json)
+RETURNS
+integer AS
+$BODY$
+ DECLARE 
+ BEGIN
+  INSERT INTO archivosjose (nombre_archivo, peso_archivo, ruta_archivo)
+                           VALUES (archivo->>'nombreArchivo', CAST(archivo->>'pesoArchivo' AS INTEGER),
+                  archivo->>'rutaArchivo');
+  RETURN 1;
+ END;
+$BODY$
+LANGUAGE plpgsql VOLATILE
+
+CREATE OR REPLACE FUNCTION fun_buscararchivojose(nombre text)
+RETURNS TABLE(id_archivo integer, nombre_archivo text, peso_archivo integer, 
+       ruta_archivo text, estado_archivo integer)
+ AS
+$BODY$
+ DECLARE 
+     consulta text;
+ BEGIN
+  consulta = 'SELECT * FROM archivosjose where estado_archivo = 1';
+  consulta := consulta || ' AND nombre_archivo ILIKE''%' || nombre || '%''';
+  consulta := consulta || ' ORDER BY id_archivo';
+  raise notice 'consulta: %',consulta;
+  RETURN QUERY EXECUTE consulta;
+ END;
+$BODY$
+LANGUAGE plpgsql VOLATILE
