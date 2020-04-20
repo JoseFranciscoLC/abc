@@ -281,6 +281,7 @@ LANGUAGE 'plpgsql' VOLATILE
 CREATE TABLE archivosjose(
     id_archivo serial,
     nombre_archivo text,
+	peso_archivo integer,
     ruta_archivo text,
     estado_archivo integer DEFAULT 1
 )

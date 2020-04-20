@@ -22,7 +22,7 @@
 		<div id = "subirBuscarArchivos">
 		    
 	        <form id="formularioArchivo">
-                <!-- <fieldset id = "fieldsetArchivo" class = "border p-3">-->
+                <!--<fieldset id = "fieldsetArchivo" class = "border p-3">-->
                     <legend class = "w-auto">Seleccione un archivo PDF</legend>
                     <input id = "archivo" name="archivo" type="file">
 				    <br><br>
@@ -35,9 +35,9 @@
 
 			      <!-- <fieldset id = "fieldsetArchivo" class = "border p-3">-->
                     <legend class = "w-auto">Buscar  </legend>
-                    <input id = "nombreArchivo"  type="text" placeholder = "Nombre del archivo">
+                    <input id = "nombreArchivo" class = "letrasNumeros"  type="text" placeholder = "Nombre del archivo">
 			
-                   <button id = "botonBuscarFiltros" title = "Buscar" type = "button" class = "btn btn-primary"><i class = "fa fa-search"></i></button>
+                   <button id = "botonBuscarArchivo" title = "Buscar" type = "button" class = "btn btn-primary"><i class = "fa fa-search"></i></button>
                    <br>
                    <br>
                    <br>
@@ -50,7 +50,7 @@
 		<div id = "tituloTablaArchivos">
 		    <h3>Archivos</h3>
 		</div>
-	    <div id = "conteinerListaArcivos">
+	    <div id = "ListaArcivos">
             <table class = "table">
 		        <thead class="thead-dark">
                     <tr>
